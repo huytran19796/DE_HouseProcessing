@@ -2,29 +2,28 @@
 
 ## 1. OVERVIEW
 - Hình ảnh
-- Crawling: Dữ liệu về nhà ở và chung cư được triết xuất từ website www.zillow.com. Spiders được xây dựng bằng thư viện Scrapy
+- Crawling: Data about houses and apartments is extracted from the website www.zillow.com using spiders built with the Scrapy library.
 - Hình ảnh
-- Transform Data: Dữ liệu thô sau khi được cào, cần được transform để làm sạch trước khi được đưa vào data warehouse.
-- Load Data: Thiết kế các bảng Dimmension và Fact để phục vụ cho các yêu cầu cần phân tích. Cụ thể dữ liệu được đưa vào MySQL và được đưa vào S3 - AWS Redshift
+- Transform Data: Raw data collected through scraping needs to undergo transformation for cleansing before being loaded into the data warehouse.
+- Load Data: Designing Dimension and Fact tables to cater to analytical requirements. Specifically, the data is loaded into MySQL and then transferred to S3 - AWS Redshift.
 - Hình ảnh
-- Visualize Data: Thiết lập kết nối tới Redshift để lấy dữ liệu. Thực hiện các bài báo cáo đơn giản.
+- Visualize Data: Establishing a connection to Redshift to retrieve data and creating basic reports.
 - Hình ảnh
 
 ## 2. SKILLS AND TOOLS
-- Quá trình ETL được thực hiện dưới dạng các Tasks, TaskGroup trong Apache Airflow
+- The ETL process is executed using Tasks and TaskGroup in Apache Airflow
 - Data Warehouse: MySQL, AWS Redshift
-- Libraries, Tools, other: Scrapy, Pandas, Docker, Python
+- Libraries, Tools, other: Scrapy, Pandas, Docker, Python, Ms PowerBI
 
-## 3. CẤU TRÚC SOURCODE
+## 3. SOURCECODE STRUCTURE
+
 ```
 |   .env
 |   docker-compose.yaml
 |   README.md
-|
 +---crawling
 |   |   run_spider.py
 |   |   scrapy.cfg
-|   |
 |   \---zillow
 |       |   items.py
 |       |   middlewares.py
@@ -32,7 +31,6 @@
 |       |   settings.py
 |       |   utils.py
 |       |   __init__.py
-|       |
 |       \---spiders
 |           |   zillow_house.py
 |           |   __init__.py
@@ -42,10 +40,8 @@
 |                   zillow_house.cpython-37.pyc
 |                   __init__.cpython-310.pyc
 |                   __init__.cpython-37.pyc
-|
 +---dags
 |   |   houses_processing.py
-|   |
 |   \---group_task
 |       |   cloud_tasks.py
 |       |   mysql_tasks.py
@@ -55,30 +51,25 @@
 |               cloud_tasks.cpython-37.pyc
 |               mysql_tasks.cpython-37.pyc
 |               transform_tasks.cpython-37.pyc
-|
 +---data_stage_1
 |       california_houses.json
-|
 +---data_stage_2
 |       dim_broker.csv
 |       dim_dstreet.csv
 |       dim_house.csv
 |       dim_province.csv
 |       fact_post.csv
-|
 +---data_transform
 |       transform.py
 |       transform_dim_address.py
 |       transform_dim_broker.py
 |       transform_dim_house.py
 |       transform_fact_post.py
-|
 +---logs
 +---mysql_utils
 |       load_dim_table.py
 |       load_fact_table.py
 |       set_up_database.sql
-|
 +---plugins
 \---redshift_utils
         aws_infor.py
@@ -86,3 +77,9 @@
         load_s3_to_redshift.py
         set_up_database.sql
 ```
+
+- The "crawling" directory contains all the source code for scraping data from the website. Raw data is saved in JSON format in the "data_stage_1" directory.
+- Data transformation operations are located within the "data_transform" directory. After transformation, the data is saved in CSV format in the "data_stage_2" directory.
+- Connection setup and data loading files for MySQL are located within the "mysql_utils" directory.
+- Connection setup and data loading files for Amazon Redshift are located in the "redshift_utils" directory.
+- The "docker-compose.yaml" file configures containers and services.
