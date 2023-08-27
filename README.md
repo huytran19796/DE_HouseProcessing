@@ -1,14 +1,25 @@
 # BUILDING ETL PROCESS WITH DATA ABOUT HOUSES AND APARTMENTS IN CALIFORNIA
 
+
 ## 1. OVERVIEW
-- Hình ảnh
+- Demo video: https://youtu.be/HWL2wHjZMbQ
+        
+ <img src="images/airflow.JPG" alt="Alt text" title="Optional title">
+ 
 - Crawling: Data about houses and apartments is extracted from the website www.zillow.com using spiders built with the Scrapy library.
-- Hình ảnh
+
+ <img src="images/zillow.JPG" alt="Alt text" title="Optional title">
+ 
 - Transform Data: Raw data collected through scraping needs to undergo transformation for cleansing before being loaded into the data warehouse.
 - Load Data: Designing Dimension and Fact tables to cater to analytical requirements. Specifically, the data is loaded into MySQL and then transferred to S3 - AWS Redshift.
-- Hình ảnh
+
+<img src="images/mysql.JPG" alt="Alt text" title="Optional title">
+
+<img src="images/redshift.JPG" alt="Alt text" title="Optional title">
+
 - Visualize Data: Establishing a connection to Redshift to retrieve data and creating basic reports.
-- Hình ảnh
+  
+<img src="images/power_bi.JPG" alt="Alt text" title="Optional title">
 
 ## 2. SKILLS AND TOOLS
 - The ETL process is executed using Tasks and TaskGroup in Apache Airflow
