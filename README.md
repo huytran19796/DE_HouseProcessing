@@ -45,23 +45,12 @@
 |       \---spiders
 |           |   zillow_house.py
 |           |   __init__.py
-|           |
-|           \---__pycache__
-|                   zillow_house.cpython-310.pyc
-|                   zillow_house.cpython-37.pyc
-|                   __init__.cpython-310.pyc
-|                   __init__.cpython-37.pyc
 +---dags
 |   |   houses_processing.py
 |   \---group_task
 |       |   cloud_tasks.py
 |       |   mysql_tasks.py
 |       |   transform_tasks.py
-|       |
-|       \---__pycache__
-|               cloud_tasks.cpython-37.pyc
-|               mysql_tasks.cpython-37.pyc
-|               transform_tasks.cpython-37.pyc
 +---data_stage_1
 |       california_houses.json
 +---data_stage_2
